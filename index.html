@@ -1,0 +1,435 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爬壁机器人探伤团队</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        dark: '#1D2129',
+                        light: '#F2F3F5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+            .timeline-date {
+                @apply text-sm font-medium text-primary/80;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- 导航栏 -->
+    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                    <i class="fa fa-robot text-white text-xl"></i>
+                </div>
+                <span class="font-bold text-xl text-primary">壁探科技团队</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="font-medium hover:text-primary transition">首页</a>
+                <a href="#about" class="font-medium hover:text-primary transition">关于我们</a>
+                <a href="#project" class="font-medium hover:text-primary transition">项目介绍</a>
+                <a href="#contact" class="font-medium hover:text-primary transition">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button class="md:hidden text-gray-700" id="menuBtn">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="py-2 hover:text-primary transition">首页</a>
+                <a href="#about" class="py-2 hover:text-primary transition">关于我们</a>
+                <a href="#project" class="py-2 hover:text-primary transition">项目介绍</a>
+                <a href="#contact" class="py-2 hover:text-primary transition">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-28 pb-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-dark mb-4">
+                        爬壁机器人<br>
+                        <span class="text-primary">探伤技术研发</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg">
+                        我们是由4名成员组成的毕业设计团队，专注于开发高效、精准的壁面探伤机器人系统。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#project" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg hover:shadow-xl">
+                            了解项目
+                        </a>
+                        <a href="#contact" class="bg-white hover:bg-gray-50 text-primary border border-primary px-6 py-3 rounded-lg font-medium transition shadow-md hover:shadow-lg">
+                            联系我们
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://picsum.photos/seed/robot/600/400" alt="爬壁机器人概念图" class="rounded-xl shadow-2xl w-full object-cover h-[400px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">关于我们的团队</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">由3名大四本科生和1位指导教授组成的研发团队，致力于爬壁机器人探伤技术的创新与实践</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 团队成员1 -->
+                <div class="bg-light rounded-xl p-6 text-center card-hover shadow-md">
+                    <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src="https://picsum.photos/seed/member1/200/200" alt="团队成员照片" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-1">张明</h3>
+                    <p class="text-primary mb-3">机械结构设计</p>
+                    <p class="text-gray-600 text-sm">负责机器人整体机械结构设计与优化</p>
+                </div>
+                
+                <!-- 团队成员2 -->
+                <div class="bg-light rounded-xl p-6 text-center card-hover shadow-md">
+                    <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src="https://picsum.photos/seed/member2/200/200" alt="团队成员照片" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-1">李华</h3>
+                    <p class="text-primary mb-3">控制系统开发</p>
+                    <p class="text-gray-600 text-sm">负责机器人控制系统与运动算法开发</p>
+                </div>
+                
+                <!-- 团队成员3 -->
+                <div class="bg-light rounded-xl p-6 text-center card-hover shadow-md">
+                    <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src="https://picsum.photos/seed/member3/200/200" alt="团队成员照片" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-1">王芳</h3>
+                    <p class="text-primary mb-3">探伤技术研究</p>
+                    <p class="text-gray-600 text-sm">负责探伤探头集成与信号处理算法</p>
+                </div>
+                
+                <!-- 指导老师 -->
+                <div class="bg-light rounded-xl p-6 text-center card-hover shadow-md">
+                    <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src="https://picsum.photos/seed/teacher/200/200" alt="指导老师照片" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-1">赵教授</h3>
+                    <p class="text-secondary mb-3">指导老师</p>
+                    <p class="text-gray-600 text-sm">机械工程系教授，负责项目整体指导</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目介绍 -->
+    <section id="project" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">我们的项目</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">爬壁机器人探伤系统 - 高效、安全的壁面检测解决方案</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://picsum.photos/seed/robotproject/600/450" alt="爬壁机器人工作示意图" class="rounded-xl shadow-xl w-full h-auto">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-dark">项目概述</h3>
+                    <p class="text-gray-600 mb-6">
+                        我们研发的爬壁机器人能够在垂直壁面（如建筑外墙、储罐、桥梁等）上自主移动，
+                        通过搭载的高精度探伤探头，实现对壁面结构的无损检测，及时发现裂缝、腐蚀等潜在问题。
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-lg mr-4 mt-1">
+                                <i class="fa fa-magnet text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">吸附技术</h4>
+                                <p class="text-gray-600">采用永磁吸附或真空吸附技术，确保机器人在垂直壁面稳定附着</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-lg mr-4 mt-1">
+                                <i class="fa fa-search text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">高精度探头</h4>
+                                <p class="text-gray-600">集成小型化探伤探头，实现对细微缺陷的精准检测</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-2 rounded-lg mr-4 mt-1">
+                                <i class="fa fa-cogs text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">自主导航</h4>
+                                <p class="text-gray-600">具备路径规划与避障功能，可自主完成大面积检测任务</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目进展 -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold mb-8 text-center text-dark">项目时间线</h3>
+                <div class="relative">
+                    <!-- 时间线 -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+                    
+                    <div class="space-y-12">
+                        <!-- 阶段1 -->
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                                <span class="timeline-date">2023年9月 - 2023年10月</span>
+                                <h4 class="font-bold text-xl mb-2">需求分析与方案设计</h4>
+                                <p class="text-gray-600">完成了项目需求分析，确定了机器人总体设计方案，包括吸附方式、移动机构和探伤系统</p>
+                            </div>
+                            <div class="z-10 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                                1
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                        </div>
+                        
+                        <!-- 阶段2 -->
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                            <div class="z-10 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                                2
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 md:text-left mb-6 md:mb-0">
+                                <span class="timeline-date">2023年11月 - 2024年1月</span>
+                                <h4 class="font-bold text-xl mb-2">原型机制作</h4>
+                                <p class="text-gray-600">完成了机器人机械结构搭建和控制系统开发，实现基本的壁面移动功能</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 阶段3 -->
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                                <span class="timeline-date">2024年2月 - 2024年3月</span>
+                                <h4 class="font-bold text-xl mb-2">探伤系统集成</h4>
+                                <p class="text-gray-600">完成了探伤探头的集成与调试，实现了缺陷检测与数据采集功能</p>
+                            </div>
+                            <div class="z-10 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                                3
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                        </div>
+                        
+                        <!-- 阶段4 -->
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                            <div class="z-10 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+                                4
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 md:text-left">
+                                <span class="timeline-date">2024年4月 - 2024年5月</span>
+                                <h4 class="font-bold text-xl mb-2">系统优化与测试</h4>
+                                <p class="text-gray-600">进行系统整体优化和现场测试，提高机器人的稳定性和检测精度</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 阶段5 -->
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                                <span class="timeline-date">2024年6月</span>
+                                <h4 class="font-bold text-xl mb-2">项目验收与答辩</h4>
+                                <p class="text-gray-600">完成项目报告撰写，准备毕业设计答辩，展示研究成果与应用前景</p>
+                            </div>
+                            <div class="z-10 w-10 h-10 rounded-full bg-gray-300 text-gray-700 flex items-center justify-center shadow-lg">
+                                5
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">联系我们</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">对我们的项目感兴趣？欢迎联系我们了解更多详情</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <form class="bg-light p-8 rounded-xl shadow-md">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="您的姓名">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="您的邮箱地址">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">留言</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您想了解的内容"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition shadow-md hover:shadow-lg">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-6 text-dark">联系方式</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                <i class="fa fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">邮箱</h4>
+                                <p class="text-gray-600">robot_team@example.edu</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                <i class="fa fa-map-marker text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">地址</h4>
+                                <p class="text-gray-600">XX大学 机械工程系 创新实验室</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                <i class="fa fa-weixin text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">微信公众号</h4>
+                                <p class="text-gray-600">壁探科技团队</p>
+                                <div class="mt-2 bg-white p-2 inline-block rounded">
+                                    <img src="https://picsum.photos/seed/qrcode/120/120" alt="微信公众号二维码" class="w-32 h-32">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                            <i class="fa fa-robot text-primary text-lg"></i>
+                        </div>
+                        <span class="font-bold text-lg">壁探科技团队</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">© 2024 爬壁机器人探伤团队 版权所有</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fa fa-youtube-play text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动端菜单
+                document.getElementById('mobileMenu').classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 滚动时导航栏样式变化
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-2', 'shadow');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2', 'shadow');
+            }
+        });
+    </script>
+
+
+</body></html>
